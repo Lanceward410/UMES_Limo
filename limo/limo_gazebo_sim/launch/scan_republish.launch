@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+    <node name="scan_republish" pkg="limo_gazebo_sim" type="scan_republish.py" output="screen" />
+</launch>
