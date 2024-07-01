@@ -1,0 +1,1036 @@
+<?xml version="1.0"?>
+<sdf version='1.4'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <physics type='ode'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+
+<model name='3by3AgileXSquare'>
+  <static>1</static>
+
+  <link name='link_3_clone'>
+    <pose>0 0 0.5 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 1.5 -0.375 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>3 0.01 0.25</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0 0 0 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 1.5 -0.375 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>3 0.01 0.25</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+  <link name='link_3_clone_0'>
+    <pose>0 0 0.5 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>-1.5 0 -0.375 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 3 0.25</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0 0 0 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>-1.5 0 -0.375 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 3 0.25</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+  <link name='link_3_clone_1'>
+    <pose>0 0 0.5 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>1.5 0 -0.375 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 3 0.25</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0 0 0 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>1.5 0 -0.375 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.01 3 0.25</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+  <link name='link_3_clone_2'>
+    <pose>0 0 0.5 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 -1.5 -0.375 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>3 0.01 0.25</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0 0 0 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 -1.5 -0.375 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>3 0.01 0.25</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+  <pose>-0.002845 -0.019186 0 0 -0 0</pose>
+</model>
+
+<model name='4by4'>
+  <static>1</static>
+  <link name='link_1'>
+    <pose>0 0 0.104 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.0889 0.0889 0.208</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.561 0.349 0.008 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.561 0.349 0.008 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.0889 0.0889 0.208</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>1.41987 -0.009901 0 0 -0 0</pose>
+</model>
+
+<model name='bucket'>
+  <static>1</static>
+  <link name='link_5'>
+    <pose>0 0 0.1651 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.933 0.933 0.925 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>2.03363 1.2137 0 0 -0 0</pose>
+</model>
+
+<model name='bucket_0'>
+  <static>1</static>
+  <link name='link_5'>
+    <pose>0 0 0.1651 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.933 0.933 0.925 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>2.05646 0.810061 0 0 -0 0</pose>
+</model>
+
+<model name='bucket_1'>
+  <static>1</static>
+  <link name='link_5'>
+    <pose>0 0 0.1651 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.3 0.3 0.3 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.933 0.933 0.925 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e+13</kp>
+            <kd>1</kd>
+            <max_vel>0.01</max_vel>
+            <min_depth>0</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>2.45029 1.03948 0 0 -0 0</pose>
+</model>
+
+<model name='permbucket'>
+  <static>1</static>
+  <link name='link_5'>
+    <pose>0 0 0.1651 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.533 0.541 0.522 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.18 0.204 0.212 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>0.855707 1.30951 0 0 -0 0</pose>
+</model>
+
+<model name='permbucket_0'>
+  <static>1</static>
+  <link name='link_5'>
+    <pose>0 0 0.1651 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.533 0.541 0.522 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.18 0.204 0.212 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <cylinder>
+          <radius>0.1372</radius>
+          <length>0.3302</length>
+        </cylinder>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>-1.31006 -0.720087 0 0 -0 0</pose>
+</model>
+
+<model name='cornerbox'>
+  <static>1</static>
+  <link name='link_1'>
+    <pose>0 0 0.16 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.5271 0.381 0.34</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.769 0.627 0 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.914 0.725 0.431 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.5271 0.381 0.32</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>1.22707 -1.31391 0 0 -0 0</pose>
+</model>
+
+<model name='tempbox_big_turned'>
+  <static>1</static>
+  <link name='link_1'>
+    <pose>0 0 0.16 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.32 0.468 0.34</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.914 0.725 0.431 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.914 0.725 0.431 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.32 0.468 0.32</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>2.2011 -0.0052 0 0 -0 0</pose>
+</model>
+
+<model name='tempbox_small'>
+  <static>1</static>
+  <link name='link_1'>
+    <pose>0 0 0.104 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.072 0.222 0.208</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.914 0.725 0.431 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.914 0.725 0.431 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.072 0.222 0.208</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>2.27419 -0.597595 0 0 -0 0</pose>
+</model>
+
+<model name='tempbox_small_turned'>
+  <static>1</static>
+  <link name='link_1'>
+    <pose>0 0 0.104 0 -0 0</pose>
+    <visual name='visual'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.222 0.072 0.208</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Grey</name>
+        </script>
+        <ambient>0.914 0.725 0.431 1</ambient>
+        <diffuse>0.7 0.7 0.7 1</diffuse>
+        <specular>0.01 0.01 0.01 1</specular>
+        <emissive>0.914 0.725 0.431 1</emissive>
+      </material>
+      <transparency>0</transparency>
+      <cast_shadows>1</cast_shadows>
+    </visual>
+    <collision name='collision'>
+      <pose>0 0 0 0 -0 0</pose>
+      <geometry>
+        <box>
+          <size>0.222 0.072 0.208</size>
+        </box>
+      </geometry>
+      <max_contacts>10</max_contacts>
+      <surface>
+        <friction>
+          <ode>
+            <mu>1</mu>
+            <mu2>1</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0</restitution_coefficient>
+          <threshold>1e+06</threshold>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+  <pose>1.97784 -0.575471 0 0 -0 0</pose>
+</model>
+
+<state world_name='default'>
+  <sim_time>27 175000000</sim_time>
+  <real_time>27 263439691</real_time>
+  <wall_time>1716516334 975483450</wall_time>
+  <iterations>27175</iterations>
+
+  <model name='3by3AgileXSquare'>
+    <pose>-0.002845 -0.019186 0 0 -0 0</pose>
+    <link name='link_3_clone'>
+      <pose>-0.002845 -0.019186 0.5 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='link_3_clone_0'>
+      <pose>-0.002845 -0.019186 0.5 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='link_3_clone_1'>
+      <pose>-0.002845 -0.019186 0.5 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='link_3_clone_2'>
+      <pose>-0.002845 -0.019186 0.5 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='4by4'>
+    <pose>1.44053 0.003074 0 0 -0 0</pose>
+    <link name='link_1'>
+      <pose>1.44053 0.003074 0.104 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='bucket'>
+    <pose>2.03363 1.2137 0 0 -0 0</pose>
+    <link name='link_5'>
+      <pose>2.03363 1.2137 0.1651 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='bucket_0'>
+    <pose>2.05646 0.810061 0 0 -0 0</pose>
+    <link name='link_5'>
+      <pose>2.05646 0.810061 0.1651 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='bucket_1'>
+    <pose>2.45029 1.03948 0 0 -0 0</pose>
+    <link name='link_5'>
+      <pose>2.45029 1.03948 0.1651 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='cornerbox'>
+    <pose>1.22707 -1.31391 0 0 -0 0</pose>
+    <link name='link_1'>
+      <pose>1.22707 -1.31391 0.16 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='ground_plane'>
+    <pose>0 0 0 0 -0 0</pose>
+    <link name='link'>
+      <pose>0 0 0 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='permbucket'>
+    <pose>0.856676 1.3356 0 0 -0 0</pose>
+    <link name='link_5'>
+      <pose>0.856676 1.3356 0.1651 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='permbucket_0'>
+    <pose>-1.35708 -0.72127 0 0 -0 0</pose>
+    <link name='link_5'>
+      <pose>-1.35708 -0.72127 0.1651 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='tempbox_big_turned'>
+    <pose>2.2011 -0.0052 0 0 -0 0</pose>
+    <link name='link_1'>
+      <pose>2.2011 -0.0052 0.16 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='tempbox_small'>
+    <pose>2.27419 -0.597595 0 0 -0 0</pose>
+    <link name='link_1'>
+      <pose>2.27419 -0.597595 0.104 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <model name='tempbox_small_turned'>
+    <pose>1.97784 -0.575471 0 0 -0 0</pose>
+    <link name='link_1'>
+      <pose>1.97784 -0.575471 0.104 0 -0 0</pose>
+      <velocity>0 0 0 0 -0 0</velocity>
+      <acceleration>0 0 0 0 -0 0</acceleration>
+      <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+  </model>
+
+  <light name='sun'>
+    <pose>0 0 10 0 -0 0</pose>
+  </light>
+</state>
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>-5.68861 2.66457 7.45324 0 0.901798 -0.476581</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+  </world>
+</sdf>
