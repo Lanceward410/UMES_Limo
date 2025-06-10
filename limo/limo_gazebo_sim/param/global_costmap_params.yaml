@@ -1,0 +1,20 @@
+global_costmap:
+  global_frame: map
+  subscribe_to_updates: true
+  update_frequency: 10.0
+  publish_frequency: 10.0
+  static_map: false
+  resolution: 2.0
+  rolling_window: true
+# Width of the map in meters
+  width: 75
+
+# Height of the map in meters
+  height: 75
+ 
+  transform_tolerance: 0.5
+
+inflation_layer:
+  enabled:              true
+  cost_scaling_factor:  30  # exponential rate at which the obstacle cost drops off (default 10)
+  inflation_radius:     .25  # max. distance from an obstacle at which costs are incurred for planning paths.

@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+import rospy
+from sensor_msgs.msg import Image
+from std_msgs.msg import String
+from cv_bridge import CvBridge
+import torch
+import torchvision.transforms as transforms
+from your_model_file import YourModelClass  # Import your model class here
+
+class ObjectRecognitionNode:
+    def __init__(self):
+        rospy.init_node('object_recognition_node', anonymous=True)
+        
+        self.model = LimoSim()                                                            #This is the selected name of our model class
+        self.model.load_state_dict(torch.load('cifar100_model.pth'))                                    #Loads our current model,
+        self.model.eval()                                                                 #Evaluates our model before continuing. Evaluates it for what? I don't know.
+
+        #Establishing OpenCV and ROS subscriber/publisher/topic variables
+        self.bridge = CvBridge()                                                          #Later, we'll call self.bridge instead of CvBridge()
+        image_topic = rospy.get_param('~image_topic', 'limo/color/image_raw')             #Defining variable image_topic
+        self.image_sub = rospy.Subscriber(image_topic, Image, self.image_callback)        #args (Topic path, Message type, Callback function)
+        result_topic = rospy.get_param('~result_topic', '/recognition_results')           #Defining variable result_topic
+        self.result_pub = rospy.Publisher(result_topic, String, queue_size=10)            #Publishing the results of our... thing
+
+        #Defining the function transforms.Compose(), a function that resizes incoming images
+        self.transforms = transforms.Compose([
+            transforms.Resize((224, 224)), #224x224 pixel image+
+            transforms.ToTensor(), #Converts image to a PyTorch 'tensor'
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+
+            #Above, explained... Each BGR value (0-255, 0-255, 0-255) becomes (0-1, 0-1, 0-1).
+            #
+            #Each B, G, and R establish a mean and standard deviation that a color has to fall
+            #within, so that fluctuations in lighting and angle are not calculated as being
+            #entirely different colors.
+            #
+            #The mean+S.D. values are of epic importance to the accuracy of our model.
+        ])
+
+    def image_callback(self, msg):
+        try:
+            cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")                            #Convert Limo image messages into OpenCV format, into an 8-bit BGR color image called "cv_image"
+        except Exception as e:
+            rospy.logerr("Error converting image into OpenCV format: {}".format(e))      #Error log generated upon failure.
+            return
+
+        input_tensor = self.transforms(cv_image).unsqueeze(0)                            #Here, transforms.Compose() is used.
+        with torch.no_grad():                                                            #no graduation unless torch succeeds. 2/28/24 update: This actually disables gradient computation
+            outputs = self.model(input_tensor)
+            _, predicted = torch.max(outputs, 1)                                         #Returns the maximum value of all elements in "outputs"
+            recognized_object = 'Object Class: {}'.format(predicted.item())              #Assigns a recognized object to a predefined class
+
+        self.result_pub.publish(recognized_object)
+
+if __name__ == '__main__':                                                              #If the script (node) is ran, as opposed to being included in another script
+    try:
+        or_node = ObjectRecognitionNode()                                               #Creates an instance of the class ObjectRecognitionNode
+        rospy.spin()                                                                    #Continues to do this every time a callback function is ran (for every image published to the limo/color/image_raw topic)
+    except rospy.ROSInterruptException:
+        pass

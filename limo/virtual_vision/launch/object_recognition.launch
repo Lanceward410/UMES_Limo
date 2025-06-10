@@ -1,0 +1,18 @@
+<launch>
+    <!-- Define parameter for model file path -->
+    <param name="model_file_path" value="/home/dreampc1/ugv_ws/src/ugv_sim/limo/virtual_vision/models/cifar100_model.pth"/>
+
+    <!-- Define parameter for input image topic -->
+    <param name="image_topic" value="/limo/color/image_raw"/>
+
+    <!-- Define parameter for result publishing topic -->
+    <param name="result_topic" value="/recognition_results"/>
+
+    <!-- Launch the object recognition node -->
+    <node name="object_recognition_node" pkg="virtual_vision" type="object_rec_node" output="screen">
+        <!-- Pass parameters to the node -->
+        <param name="model_file_path" value="/home/dreampc1/ugv_ws/src/ugv_sim/limo/virtual_vision/models/cifar100_model.pth"/>
+        <param name="image_topic" value="/limo/color/image_raw"/>
+        <param name="result_topic" value="/recognition_results"/>
+    </node>
+</launch>
